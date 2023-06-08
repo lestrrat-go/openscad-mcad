@@ -1,16 +1,13 @@
 package mcad
 
 import (
-	"context"
-	"io"
-
+	"github.com/lestrrat-go/openscad"
 	"github.com/lestrrat-go/openscad/dsl"
 )
 
-func Deg(ctx context.Context, w io.Writer) error {
+func Deg() openscad.Stmt {
 	angle := dsl.Variable("angle")
 	return dsl.Function("deg").
 		Parameters(angle).
-		Body(dsl.Mul(360, dsl.Div(angle, dsl.Variable("TAU")))).
-		EmitStmt(ctx, w)
+		Body(dsl.Mul(360, dsl.Div(angle, dsl.Variable("TAU"))))
 }

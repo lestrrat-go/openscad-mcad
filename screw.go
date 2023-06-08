@@ -1,41 +1,26 @@
 package mcad
 
 import (
-	"context"
-	"fmt"
-	"io"
-
+	"github.com/lestrrat-go/openscad"
 	"github.com/lestrrat-go/openscad/dsl"
 )
 
-func Screw(ctx context.Context, w io.Writer) error {
-	if err := Constants(ctx, w); err != nil {
-		return err
-	}
-	fmt.Fprint(w, "\n")
-	if err := Deg(ctx, w); err != nil {
-		return err
-	}
-	fmt.Fprint(w, "\n")
-	if err := Helix(ctx, w); err != nil {
-		return err
-	}
-	fmt.Fprint(w, "\n")
-	if err := Auger(ctx, w); err != nil {
-		return err
-	}
-	fmt.Fprint(w, "\n")
-	if err := BallGroove(ctx, w); err != nil {
-		return err
-	}
-	fmt.Fprint(w, "\n")
-	if err := BallGroove2(ctx, w); err != nil {
-		return err
-	}
-	return nil
+func init() {
+	openscad.Register("screw.scad", Screw())
 }
 
-func Helix(ctx context.Context, w io.Writer) error {
+func Screw() openscad.Stmt {
+	return dsl.Stmts(
+		dsl.Include("curves.scad"),
+
+		Helix(),
+		Auger(),
+		BallGroove(),
+		BallGroove2(),
+	)
+}
+
+func Helix() openscad.Stmt {
 	pitch := dsl.Variable("pitch")
 	length := dsl.Variable("length")
 	slices := dsl.Variable("slices").Value(500)
@@ -49,10 +34,10 @@ func Helix(ctx context.Context, w io.Writer) error {
 			dsl.LinearExtrude(length, false, 10, dsl.Mul(360, rotations), slices).
 				Fn(100).
 				Add(dsl.Children()),
-		).EmitStmt(ctx, w)
+		)
 }
 
-func Auger(ctx context.Context, w io.Writer) error {
+func Auger() openscad.Stmt {
 	pitch := dsl.Variable("pitch")
 	length := dsl.Variable("length")
 	outsideRadius := dsl.Variable("outside_radius")
@@ -75,10 +60,10 @@ func Auger(ctx context.Context, w io.Writer) error {
 				),
 				dsl.Cylinder(length, innerRadius, nil),
 			),
-		).EmitStmt(ctx, w)
+		)
 }
 
-func BallGroove(ctx context.Context, w io.Writer) error {
+func BallGroove() openscad.Stmt {
 	pitch := dsl.Variable("pitch")
 	length := dsl.Variable("length")
 	diameter := dsl.Variable("diameter")
@@ -90,10 +75,10 @@ func BallGroove(ctx context.Context, w io.Writer) error {
 			dsl.Call("helix", pitch, length, dsl.Variable("slices").Value(100)).
 				Add(dsl.Translate(dsl.List(diameter, 0, 0)).
 					Add(dsl.Circle(ballRadius))),
-		).EmitStmt(ctx, w)
+		)
 }
 
-func BallGroove2(ctx context.Context, w io.Writer) error {
+func BallGroove2() openscad.Stmt {
 	pitch := dsl.Variable("pitch")
 	length := dsl.Variable("length")
 	diameter := dsl.Variable("diameter")
@@ -121,6 +106,6 @@ func BallGroove2(ctx context.Context, w io.Writer) error {
 							),
 					),
 			),
-		).EmitStmt(ctx, w)
+		)
 
 }

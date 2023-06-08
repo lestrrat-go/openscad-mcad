@@ -4,16 +4,16 @@ import (
 	"context"
 	"os"
 
-	mcad "github.com/lestrrat-go/openscad-mcad"
+	"github.com/lestrrat-go/openscad"
 )
 
 func ExampleScrew() {
-	mcad.Screw(context.Background(), os.Stdout)
+	stmts, ok := openscad.Lookup("screw.scad")
+	if ok {
+		stmts.EmitStmt(context.Background(), os.Stdout)
+	}
 	// OUTPUT:
-	// TAU=6.2831853071;
-	// PI=TAU/2;
-	// mm_per_inch=25.4;
-	// function deg(angle) = 360*angle/TAU;
+	// include <curves.scad>
 	//
 	// module helix(pitch, length, slices=500)
 	// {
@@ -46,7 +46,7 @@ func ExampleScrew() {
 	//   offset=length/slices;
 	//   union()
 	//     for(i=[0:slices]) {
-	//       let(z)
+	//       let(z=i*offset)
 	//         translate(helix_curve(pitch, radius, z))
 	//           sphere(r=ball_radius, $fa=5, $fs=1);
 	//     }
