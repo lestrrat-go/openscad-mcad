@@ -6,5 +6,3 @@ require (
 	github.com/lestrrat-go/blackmagic v1.0.1 // indirect
 	github.com/lestrrat-go/openscad v0.0.0-20230608054520-78d40e0f9681 // indirect
 )
-
-replace github.com/lestrrat-go/openscad => ../openscad
