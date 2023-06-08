@@ -9,6 +9,14 @@ import (
 )
 
 func Screw(ctx context.Context, w io.Writer) error {
+	if err := Constants(ctx, w); err != nil {
+		return err
+	}
+	fmt.Fprint(w, "\n")
+	if err := Deg(ctx, w); err != nil {
+		return err
+	}
+	fmt.Fprint(w, "\n")
 	if err := Helix(ctx, w); err != nil {
 		return err
 	}

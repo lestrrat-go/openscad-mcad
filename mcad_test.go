@@ -9,4 +9,5 @@ import (
 
 func ExampleScrew() {
 	mcad.Screw(context.Background(), os.Stdout)
+	// OUTPUT:
 }
