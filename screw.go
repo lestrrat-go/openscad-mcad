@@ -67,7 +67,7 @@ func BallGroove() openscad.Stmt {
 	pitch := dsl.Variable("pitch")
 	length := dsl.Variable("length")
 	diameter := dsl.Variable("diameter")
-	ballRadius := dsl.Variable("ball_radius")
+	ballRadius := dsl.Variable("ball_radius").Value(10)
 
 	return dsl.Module("ball_groove").
 		Parameters(pitch, length, diameter, ballRadius).

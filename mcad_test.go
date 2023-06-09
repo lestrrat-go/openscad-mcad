@@ -32,7 +32,7 @@ func ExampleScrew() {
 	//   }
 	// }
 	//
-	// module ball_groove(pitch, length, diameter, ball_radius)
+	// module ball_groove(pitch, length, diameter, ball_radius=10)
 	// {
 	//   helix(pitch, length, 100)
 	//     translate([diameter, 0, 0])
