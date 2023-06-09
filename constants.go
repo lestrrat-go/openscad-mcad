@@ -5,6 +5,10 @@ import (
 	"github.com/lestrrat-go/openscad/dsl"
 )
 
+func init() {
+	openscad.Register("constants.scad", Constants())
+}
+
 func Constants() openscad.Stmt {
 	tau := dsl.Variable("TAU").Value(6.2831853071)
 	return dsl.Stmts(

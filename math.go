@@ -5,6 +5,17 @@ import (
 	"github.com/lestrrat-go/openscad/dsl"
 )
 
+func init() {
+	openscad.Register("math.scad", Math())
+}
+
+func Math() openscad.Stmt {
+	return dsl.Stmts(
+		dsl.Include("constants.scad"),
+		Curves(),
+	)
+}
+
 func Deg() openscad.Stmt {
 	angle := dsl.Variable("angle")
 	return dsl.Function("deg").

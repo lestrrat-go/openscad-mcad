@@ -1,16 +1,16 @@
 package mcad_test
 
 import (
-	"context"
+	"fmt"
 	"os"
 
 	"github.com/lestrrat-go/openscad"
 )
 
 func ExampleScrew() {
-	stmts, ok := openscad.Lookup("screw.scad")
-	if ok {
-		stmts.EmitStmt(context.Background(), os.Stdout)
+	if err := openscad.EmitFile("screw.scad", os.Stdout); err != nil {
+		fmt.Printf("%s\n", err)
+		return
 	}
 	// OUTPUT:
 	// include <curves.scad>
