@@ -4,6 +4,8 @@ github.com/lestrrat-go/blackmagic v1.0.1 h1:lS5Zts+5HIC/8og6cGHb0uCcNCa3OUt1ygh3
 github.com/lestrrat-go/blackmagic v1.0.1/go.mod h1:UrEqBzIR2U6CnzVyUtfM6oZNMt/7O7Vohk2J0OGSAtU=
 github.com/lestrrat-go/openscad v0.0.0-20230609034521-1ae4808bd258 h1:pUQMZf+euQlE7EZj8EqlQQ+oIzWwzS85dCVDzyJIeF4=
 github.com/lestrrat-go/openscad v0.0.0-20230609034521-1ae4808bd258/go.mod h1:1hSmzF8I+DZLZYbY2ffrjhgqfybND2E0JSipyxT7Uuw=
+github.com/lestrrat-go/openscad v0.0.0-20230609041840-d12aae6b992b h1:K3aaRDGKXiHmJtVrmU2Epw4jMFjsMYWYxt5uf07uSJw=
+github.com/lestrrat-go/openscad v0.0.0-20230609041840-d12aae6b992b/go.mod h1:1hSmzF8I+DZLZYbY2ffrjhgqfybND2E0JSipyxT7Uuw=
 github.com/lestrrat-go/option v1.0.1 h1:oAzP2fvZGQKWkvHa1/SAcFolBEca1oN+mQ7eooNBEYU=
 github.com/lestrrat-go/option v1.0.1/go.mod h1:5ZHFbivi4xwXxhxY9XHDe2FHo6/Z7WWmtT7T5nBBp3I=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=

@@ -12,7 +12,7 @@ func init() {
 func Math() openscad.Stmt {
 	return dsl.Stmts(
 		dsl.Include("constants.scad"),
-		Curves(),
+		Deg(),
 	)
 }
 
