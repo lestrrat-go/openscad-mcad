@@ -48,16 +48,16 @@ func Auger() openscad.Stmt {
 		Parameters(pitch, length, outsideRadius, innerRadius, taperRatio).
 		Actions(
 			dsl.Union(
-				dsl.Call("helix", pitch, length),
-				dsl.Polygon(
-					dsl.List(
-						dsl.List(0, innerRadius),
-						dsl.List(outsideRadius, dsl.Mul(innerRadius, taperRatio)),
-						dsl.List(outsideRadius, dsl.Mul(dsl.Mul(innerRadius, -1), taperRatio)),
-						dsl.List(0, dsl.Mul(-1, innerRadius)),
-					),
-					dsl.List(0, 1, 2, 3),
-				),
+				dsl.Call("helix", pitch, length).
+					Add(dsl.Polygon(
+						dsl.List(
+							dsl.List(0, innerRadius),
+							dsl.List(outsideRadius, dsl.Mul(innerRadius, taperRatio)),
+							dsl.List(outsideRadius, dsl.Mul(dsl.Mul(innerRadius, -1), taperRatio)),
+							dsl.List(0, dsl.Mul(-1, innerRadius)),
+						),
+						dsl.List(dsl.List(0, 1, 2, 3)),
+					)),
 				dsl.Cylinder(length, innerRadius, nil),
 			),
 		)
@@ -72,7 +72,7 @@ func BallGroove() openscad.Stmt {
 	return dsl.Module("ball_groove").
 		Parameters(pitch, length, diameter, ballRadius).
 		Actions(
-			dsl.Call("helix", pitch, length, dsl.Variable("slices").Value(100)).
+			dsl.Call("helix", pitch, length, 100).
 				Add(dsl.Translate(dsl.List(diameter, 0, 0)).
 					Add(dsl.Circle(ballRadius))),
 		)

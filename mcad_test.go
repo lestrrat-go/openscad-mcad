@@ -26,15 +26,15 @@ func ExampleScrew() {
 	// {
 	//   union()
 	//   {
-	//     helix(pitch, length);
-	//     polygon(points=[[0, inner_radius], [outside_radius, inner_radius*taper_ratio], [outside_radius, inner_radius*-1*taper_ratio], [0, -1*inner_radius]], paths=[0, 1, 2, 3]);
+	//     helix(pitch, length)
+	//       polygon(points=[[0, inner_radius], [outside_radius, inner_radius*taper_ratio], [outside_radius, inner_radius*-1*taper_ratio], [0, -1*inner_radius]], paths=[[0, 1, 2, 3]]);
 	//     cylinder(h=length, r=inner_radius);
 	//   }
 	// }
 	//
 	// module ball_groove(pitch, length, diameter, ball_radius)
 	// {
-	//   helix(pitch, length, slices)
+	//   helix(pitch, length, 100)
 	//     translate([diameter, 0, 0])
 	//       circle(r=ball_radius);
 	// }
